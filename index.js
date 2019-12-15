@@ -25,8 +25,31 @@ const cardsGET = async (req, res) => {
 
 };
 
-const cardsPOST = (req, res) => {
-    res.status(404).end();
+const cardsPOST = async (req, res) => {
+    try {
+        if (!req.body.type || !req.body.text) {
+            res.status(400).end();
+        }
+
+        const card = {
+            text: req.body.text
+        };
+
+        switch (req.body.type) {
+            case 'answer':
+                await firestore.collection('answers').doc().set(card);
+                res.status(200).json(card);
+                break;
+            case 'question':
+                await firestore.collection('questions').doc().set(card);
+                res.status(200).json(card);
+                break;
+            default:
+                res.status(404).end();
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
 };
 
 const cardsPUT = (req, res) => {
