@@ -56,8 +56,18 @@ const cardsPUT = (req, res) => {
     res.status(404).end();
 };
 
-const cardsDELETE = (req, res) => {
-    res.status(404).end();
+const cardsDELETE = async (req, res) => {
+    try {
+        if (!req.body.id) {
+            res.status(400).end();
+        }
+
+        await firestore.collection('answers').doc(req.body.id).delete();
+        await firestore.collection('questions').doc(req.body.id).delete();
+        res.status(200).json({ id: req.body.id });
+    } catch (err) {
+        res.status(500).send(err);
+    }
 };
 
 exports.cardsController = (req, res) => {
