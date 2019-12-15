@@ -10,11 +10,13 @@ const cardsGET = async (req, res) => {
         const questions = await firestore.collection('questions').get();
         answers.forEach((item) => {
             let data = item.data();
+            data.id = item.id;
             data.type = 'answer';
             resData = [ ...resData, data ];
         });
         questions.forEach((item) => {
             let data = item.data();
+            data.id = item.id;
             data.type = 'question';
             resData = [ ...resData, data ];
         });
@@ -22,7 +24,6 @@ const cardsGET = async (req, res) => {
     } catch (err) {
         res.status(500).send(err);
     }
-
 };
 
 const cardsPOST = async (req, res) => {
