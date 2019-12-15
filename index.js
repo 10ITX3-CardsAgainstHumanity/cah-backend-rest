@@ -53,8 +53,22 @@ const cardsPOST = async (req, res) => {
     }
 };
 
-const cardsPUT = (req, res) => {
-    res.status(404).end();
+const cardsPUT = async (req, res) => {
+    try {
+        if (!req.body.id || !req.body.text) {
+            res.status(400).end();
+        }
+
+        const card = {
+            text: req.body.text
+        };
+
+        await firestore.collection('answers').doc(req.body.id).set(card);
+        await firestore.collection('questions').doc(req.body.id).set(card);
+        res.status(200).json(card);
+    } catch (err) {
+        res.status(500).send(err);
+    }
 };
 
 const cardsDELETE = async (req, res) => {
