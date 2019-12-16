@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'functions', 'deploy', 'cardsController',
+            '--max-instances', '1',
+            '--runtime', 'nodejs8',
+            '--entry-point', 'cardsController',
+            '--memory', '128',
+            '--timeout', '30',
+            '--region', 'europe-west1',
+            '--trigger-http',
+            '--allow-unauthenticated',
+            '--set-env-vars', 'APIKEY=${_APIKEY}'
+    ]

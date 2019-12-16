@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "rest backend as faas",
   "main": "index.js",
-  "scripts": {
-    "deploy": "gcloud functions deploy cardsController --runtime nodejs8 --memory 128 --timeout 30 --region europe-west1 --trigger-http --set-env-vars APIKEY=EyC7zN7bwZYLWRG6"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/10ITX3-CardsAgainstHumanity/cah-backend-rest.git"
