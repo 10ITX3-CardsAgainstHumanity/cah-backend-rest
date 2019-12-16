@@ -39,11 +39,11 @@ const cardsPOST = async (req, res) => {
         switch (req.body.type) {
             case 'answer':
                 await firestore.collection('answers').doc().set(card);
-                res.status(200).json(card);
+                res.status(201).json(card);
                 break;
             case 'question':
                 await firestore.collection('questions').doc().set(card);
-                res.status(200).json(card);
+                res.status(201).json(card);
                 break;
             default:
                 res.status(404).end();
@@ -86,7 +86,7 @@ const cardsDELETE = async (req, res) => {
 };
 
 exports.cardsController = (req, res) => {
-    if (req.header('Apikey') !== apikey) {
+    if (req.header('X-Apikey') !== apikey) {
         res.status(401).end();
     }
 
