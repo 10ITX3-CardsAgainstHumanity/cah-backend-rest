@@ -1,0 +1,19 @@
+{
+  "name": "cah-backend-rest",
+  "version": "0.1.0",
+  "description": "rest backend as faas",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10ITX3-CardsAgainstHumanity/cah-backend-rest.git"
+  },
+  "author": "Max Schäfer <contact@maxrs.de>",
+  "license": "SEE LICENSE IN <LICENSE.md>",
+  "bugs": {
+    "url": "https://github.com/10ITX3-CardsAgainstHumanity/cah-backend-rest/issues"
+  },
+  "homepage": "https://github.com/10ITX3-CardsAgainstHumanity/cah-backend-rest#readme",
+  "dependencies": {
+    "@google-cloud/firestore": "^2.0.0"
+  }
+}
